@@ -47,3 +47,14 @@ export const checkAdmin = (currentAcces) => {
 export const checkManager = (currentAcces) => {
     return (currentAcces[0]?.position?.Projects?.length > 0) ? true : false
 }
+
+export const checkDeveloper = (currentAcces, companyId) => {
+    let exist = false 
+    currentAcces[companyId].some(element => {
+        console.log(element);
+        if (element?.position?.position === DEVELOPER_LEVEL_ID) {
+            exist = true;
+        }
+    })
+    return exist;
+}
