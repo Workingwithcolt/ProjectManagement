@@ -51,7 +51,6 @@ export const checkManager = (currentAcces) => {
 export const checkDeveloper = (currentAcces, companyId) => {
     let exist = false 
     currentAcces[companyId].some(element => {
-        console.log(element);
         if (element?.position?.position === DEVELOPER_LEVEL_ID) {
             exist = true;
         }
