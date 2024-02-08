@@ -14,10 +14,6 @@ function DataReceiver({ queryData }) {
   const currentAuthContext = useContext(AuthContext);
   const queryKey = [currentAuthContext.currentUserObject.uid, PENDING]
   var databaseQuery = undefined
-
-  // if (!queryData?.name == "") {
-  //   console.log(checkAdmin(queryData.selectedCompany))
-  // }
   const queryFunction = async () => {
     let isAdmin = checkAdmin(queryData.selectedCompany.value)
     if (isAdmin) {
