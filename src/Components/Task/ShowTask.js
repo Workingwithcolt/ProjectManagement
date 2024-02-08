@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../Auth";
-import { UserContext } from "../Contexts/CurrentUserContext";
-import { useQuery } from "@tanstack/react-query";
 import { TASK, endpoints } from "../../FirebaseHelpers/ApiInterface";
 import { TaskCard } from "./TaskCard";
 import DataView from "../GenericComponents/DataView";
@@ -11,7 +9,6 @@ import { PENDING } from "../../Helper/helper";
 export const ShowTask = () => {
     let { id } = useParams();
     const currentAuthContext = useContext(AuthContext)
-    const { currentUserAdmin } = useContext(UserContext);
     var databaseQuery = [["UserId", "==", id],["status","==",PENDING]]
 
     const queryKey = [currentAuthContext.currentUserObject.uid, id, TASK];
@@ -20,8 +17,6 @@ export const ShowTask = () => {
         return  await endpoints.Task.getAllDocument(databaseQuery);
 
     };
-
-   
 
     const getValueToSearch = (current) => {
         return (
