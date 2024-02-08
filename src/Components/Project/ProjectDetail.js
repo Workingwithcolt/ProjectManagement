@@ -10,7 +10,6 @@ import { GenericSelect } from "../GenericComponents/GenericSelect";
 import Button from "../GenericComponents/Button";
 
 export const ProjectDetail = ({ item }) => {
-    console.log(item);
     const { currentUserAdmin } = useContext(UserContext);
     const currentAuthContext = useContext(AuthContext);
     const uid = currentAuthContext.currentUserObject.uid;
