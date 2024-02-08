@@ -29,8 +29,9 @@ function DataReceiver({ queryData }) {
     };
 
     const getValueToSearch = (current) => {
+      
         return (
-            "chetan"
+            current.project
         )
     }
     return (
