@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { MANAGER, PROJECTS, endpoints } from "../../FirebaseHelpers/ApiInterface"
-import { ACCEPTED, MANAGER_LEVEL_ID } from "../../Helper/helper";
+import { MANAGER, PROJECTS, USERS, endpoints } from "../../FirebaseHelpers/ApiInterface"
+import { ACCEPTED, MANAGER_LEVEL_ID, deepCopyObject } from "../../Helper/helper";
 import LoadingSpinner from "../GenericComponents/LoadingSpinner";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
@@ -10,6 +10,7 @@ import { GenericSelect } from "../GenericComponents/GenericSelect";
 import Button from "../GenericComponents/Button";
 
 export const ProjectDetail = ({ item }) => {
+    console.log(item);
     const { currentUserAdmin } = useContext(UserContext);
     const currentAuthContext = useContext(AuthContext);
     const uid = currentAuthContext.currentUserObject.uid;
@@ -23,12 +24,13 @@ export const ProjectDetail = ({ item }) => {
 
     const queryFunction = async () => {
         let parsedValue = JSON.parse(alocateManager).value;
-        if (!parsedValue.Access[currentUserAdmin.selectedCompany.label][0].position.Projects) {
-            parsedValue.Access[currentUserAdmin.selectedCompany.label][0].position.Projects = []
-        }
-        let exist = parsedValue.Access[currentUserAdmin.selectedCompany.label][0].position.Projects.find(element => element === item.id)
-        if (!exist) {
-            parsedValue.Access[currentUserAdmin.selectedCompany.label][0].position.Projects.push(item.id)
+        if (!parsedValue.Access[currentUserAdmin.selectedCompany.label][0]?.Project ||
+            !parsedValue.Access[currentUserAdmin.selectedCompany.label][0]?.Project[item.id]) {
+
+            let obj = parsedValue.Access[currentUserAdmin.selectedCompany.label][0]?.Project
+                ? parsedValue.Access[currentUserAdmin.selectedCompany.label][0]?.Project : {};
+            obj[item.id] = MANAGER_LEVEL_ID
+            parsedValue.Access[currentUserAdmin.selectedCompany.label][0].Project = obj;
             item.AssignedManager = parsedValue.id;
             await endpoints.Project.updateDocument(item.id, item)
             await endpoints.users.updateDocument(parsedValue.id, parsedValue)
@@ -59,7 +61,7 @@ export const ProjectDetail = ({ item }) => {
         {
             onSuccess: () => {
                 queryClient.invalidateQueries({
-                    predicate: (query) => query.queryKey.includes([PROJECTS, MANAGER]),
+                    predicate: (query) => query.queryKey.includes([PROJECTS, MANAGER, USERS]),
                 });
             },
         }

@@ -46,7 +46,7 @@ export const CreateCompany = () => {
                 querryFunction={addUser}
                 propertyList={createCompany}
                 queryKeyValue={USERS}
-                navigateTo="/home"
+                navigateTo="/"
             />
         </section>
     )

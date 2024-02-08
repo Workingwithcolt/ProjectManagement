@@ -57,7 +57,7 @@ export const Userjoin = () => {
                 querryFunction={joinUser}
                 propertyList={JoinForm}
                 queryKeyValue={USERS}
-                navigateTo="/home"
+                navigateTo="/"
             />
         </section>
     )

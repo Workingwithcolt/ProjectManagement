@@ -51,7 +51,7 @@ export const AcceptUser = ({ item }) => {
                 mutate()
                 return;
             }
-            setCustomeError("If You Developer Please Assign Manager!!")
+            setCustomeError("If You Assign role Developer Please Assign Manager!!")
             return;
         }
     }
