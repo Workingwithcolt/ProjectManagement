@@ -1,22 +1,12 @@
 import React from 'react'
 import { SchemaTypes } from '../../Helper/Extraproperties';
-import GenericDropDown from './GenericDropDown';
 
 export default function Addproperty(props) {
     var controlProps = {
         required: props.data.item.required,
         placeholder: props.data.item.displayName,
         onChange: (e) => {
-            if (props.data.item.type === SchemaTypes.STD_DROPDOWN) {
-                props.onChange({ name: props.data.item.name, value: e.standard });
-            } else if (props.data.item.type === SchemaTypes.DIV_DROPDOWN) {
-                props.onChange({ name: props.data.item.name, value: e });
-            } else if (props.data.item.type === SchemaTypes.USER_LEVEL_DROPDOWN) {
-                props.onChange({ name: props.data.item.name, value: e });
-            }
-            else {
-                props.onChange({ name: props.data.item.name, value: e.target.value });
-            }
+            props.onChange({ name: props.data.item.name, value: e.target.value });
         },
     };
     switch (props.data.item.type) {
@@ -52,13 +42,6 @@ export default function Addproperty(props) {
             break;
         default:
             break;
-    }
-
-
-    if (controlProps.type === SchemaTypes.DROP_DOWN) {
-        return (
-            <GenericDropDown props={props} controlProps={controlProps} isUpdateForm={props.isUpdateForm} />
-        )
     }
 
     if (controlProps.type === SchemaTypes.TextArea) {

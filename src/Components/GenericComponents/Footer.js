@@ -7,7 +7,7 @@ function Footer() {
                 <span className="text-sm text-gray-400 sm:text-center">
                     © {new Date().getFullYear()}
                     <span className="mx-2">
-                        Opankys Inc.
+                        Test Inc.
                     </span>
                     <span className='mx-2'>
                         All Rights Reserved.

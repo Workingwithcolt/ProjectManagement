@@ -18,7 +18,7 @@ function DataReceiver({ queryData }) {
     if (queryData.selectedCompany) {
         let addEffectAccess = queryData.selectedCompany.value.some(item => item.levelID === ADMIN_USER_LEVEL_ID);
         if (addEffectAccess) {
-            databaseQuery = ["companyID", "==", queryData.selectedCompany.label]
+            databaseQuery = [["companyID", "==", queryData.selectedCompany.label]]
         }
     }
 

@@ -19,11 +19,6 @@ export const ManagerCard = ({ item }) => {
                 name={"status"}
                 value={item[companyId]}
             />
-            <Button
-                buttonName={"Assign Project"}
-                type={"button"}
-                onPress={() => console.log("it is ok")}
-            />
         </ul>
     </div></>)
 }

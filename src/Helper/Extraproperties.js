@@ -1,4 +1,3 @@
-import { CARS, ROOMS } from "../FirebaseHelpers/ApiInterface"
 
 export const SchemaTypes = {
     Number: "Number",
@@ -34,73 +33,6 @@ export const known_Custom_Types = {
 }
 
 export const propertyList = {
-    Room_Name: {
-        displayName: "Room Number",
-        name: "RoomName",
-        type: SchemaTypes.String,
-        required: true
-    },
-    Room_ExtraBed: {
-        displayName: "Extra Beds",
-        name: "extrabeds",
-        type: SchemaTypes.Number,
-        min: 0,
-        required: true
-    },
-    Room_Bed: {
-        displayName: "Beds",
-        name: "RoomBed",
-        type: SchemaTypes.Number,
-        min: 0,
-        required: true
-    },
-    Car_Number: {
-        displayName: "Car Number",
-        name: "carNumber",
-        type: SchemaTypes.String,
-        required: true
-    },
-    Car_Name: {
-        displayName: "Car Name",
-        name: "carName",
-        type: SchemaTypes.String,
-        required: true
-    },
-    Car_Capacity: {
-        displayName: "Car Capacity",
-        name: "capacity",
-        type: SchemaTypes.Number,
-        required: true,
-        min: 0
-    },
-    People_Name: {
-        displayName: "Name",
-        name: "peopleName",
-        type: SchemaTypes.String,
-        required: true,
-    },
-    People_Tag: {
-        displayName: "Group",
-        name: "peopletag",
-        type: SchemaTypes.String,
-        required: true,
-    },
-    People_Room: {
-        displayName: "Select Room",
-        name: "RoomName",
-        type: SchemaTypes.DROP_DOWN,
-        queryKey: ROOMS,
-        DatabaseKey: "RoomName",
-        required: true
-    },
-    People_Car: {
-        displayName: "Select Car",
-        name: "carNumber",
-        type: SchemaTypes.DROP_DOWN,
-        DatabaseKey: "carNumber",
-        queryKey: CARS,
-        required: true
-    },
     Full_Name: {
         displayName: "Full Name",
         name: "Full Name",
@@ -170,45 +102,6 @@ export const JoinForm = [
    {
     item:propertyList.UniqueID
    }
-]
-
-export const Room = [
-    {
-        item: propertyList.Room_Name,
-    },
-    {
-        item: propertyList.Room_Bed,
-    },
-    {
-        item: propertyList.Room_ExtraBed
-    }
-]
-
-export const CarProps = [
-    {
-        item: propertyList.Car_Name
-    },
-    {
-        item: propertyList.Car_Number
-    },
-    {
-        item: propertyList.Car_Capacity
-    }
-]
-
-export const PeopleProps = [
-    {
-        item: propertyList.People_Name
-    },
-    {
-        item: propertyList.People_Tag
-    },
-    {
-        item: propertyList.People_Room,
-    },
-    {
-        item: propertyList.People_Car
-    }
 ]
 
 export const Projects = [

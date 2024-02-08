@@ -10,7 +10,6 @@ import { GenericSelect } from "../GenericComponents/GenericSelect";
 import Button from "../GenericComponents/Button";
 
 export const ProjectDetail = ({ item }) => {
-    console.log(item);
     const { currentUserAdmin } = useContext(UserContext);
     const currentAuthContext = useContext(AuthContext);
     const uid = currentAuthContext.currentUserObject.uid;
@@ -24,26 +23,28 @@ export const ProjectDetail = ({ item }) => {
 
     const queryFunction = async () => {
         let parsedValue = JSON.parse(alocateManager).value;
-        console.log(JSON.parse(alocateManager).value)
         if (!parsedValue.Access[currentUserAdmin.selectedCompany.label][0].position.Projects) {
             parsedValue.Access[currentUserAdmin.selectedCompany.label][0].position.Projects = []
         }
-        console.log(parsedValue);
-        parsedValue.Access[currentUserAdmin.selectedCompany.label][0].position.Projects.push(item.id)
-        item.AssignedManager = parsedValue.id;
-        await endpoints.Project.updateDocument(item.id, item)
-        await endpoints.users.updateDocument(parsedValue.id, parsedValue)
+        let exist = parsedValue.Access[currentUserAdmin.selectedCompany.label][0].position.Projects.find(element => element === item.id)
+        if (!exist) {
+            parsedValue.Access[currentUserAdmin.selectedCompany.label][0].position.Projects.push(item.id)
+            item.AssignedManager = parsedValue.id;
+            await endpoints.Project.updateDocument(item.id, item)
+            await endpoints.users.updateDocument(parsedValue.id, parsedValue)
+            return;
+        }
+        return Promise.reject("Project is Already Assign !!")
     }
 
 
     const { data, isLoading: loader, error: err } = useQuery([uid, MANAGER], async () => {
-        const databaseQuery = [`${currentUserAdmin.selectedCompany.label}`, "==", ACCEPTED]
+        const databaseQuery = [[`${currentUserAdmin.selectedCompany.label}`, "==", ACCEPTED]]
         let users = await endpoints.users.getAllDocument(databaseQuery)
         let result = []
         users.forEach(element => {
             if (element?.Access[currentUserAdmin?.selectedCompany?.label]?.length === 1) {
                 if (element.Access[currentUserAdmin.selectedCompany.label][0].position.position == MANAGER_LEVEL_ID) {
-                    console.log(element);
                     result.push({
                         value: element,
                         label: element['Full Name']
@@ -82,7 +83,7 @@ export const ProjectDetail = ({ item }) => {
         return (
             <div className="flex flex-col p-2">
                 <div className="p-4 mb-4 text-sm text-white text-center rounded-lg bg-gray-700" role="alert">
-                    {error.message}
+                    {error.message || err || error}
                 </div>
                 <button onClick={() => handleRedirect("/home")}>
                     ok

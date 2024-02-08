@@ -34,7 +34,7 @@ const CurrentUser = ({ company, SelectCompany, currentAuthContext }) => {
             selectedCompany: JSON.parse(e.target.value)
         })
     }
-console.log(currentUserAdmin);
+
     // useEffect(() => {
 
     // }, [currentUserAdmin, data, setCurrentUserAdmin])
@@ -68,7 +68,7 @@ console.log(currentUserAdmin);
 export default function GenericBodyCard({ children }) {
     const [company, SelectCompany] = useState(undefined)
     const currentAuthContext = useContext(AuthContext)
-    console.log(company);
+
     return (
         <div className='flex flex-col h-screen'>
             <Header />

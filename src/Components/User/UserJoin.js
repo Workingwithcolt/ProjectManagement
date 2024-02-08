@@ -21,7 +21,7 @@ export const Userjoin = () => {
         state.Access = {}
 
         let CompanyInfo = await returnCurrentCompany(endpoints, state.UniqueId);
-        console.log(CompanyInfo);
+
 
         if (Object.keys(CompanyInfo).length == 0) return Promise.reject("Company Does not Exist")
 
@@ -57,7 +57,7 @@ export const Userjoin = () => {
                 querryFunction={joinUser}
                 propertyList={JoinForm}
                 queryKeyValue={USERS}
-                navigateTo="/roomView"
+                navigateTo="/home"
             />
         </section>
     )

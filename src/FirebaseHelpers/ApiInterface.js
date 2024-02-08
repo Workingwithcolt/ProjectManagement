@@ -12,7 +12,6 @@ import {
   query,
   where,
   setDoc,
-  onSnapshot,
 } from "firebase/firestore";
 
 class ApiInterface {
@@ -41,7 +40,11 @@ class ApiInterface {
     try {
       let result = []
       if (constrainArray) {
-        const q = query(this.collectionRef, where(...constrainArray));
+        let whereArray = []
+        constrainArray.forEach(element=>{
+          whereArray.push(where(...element));
+        })
+        const q = query(this.collectionRef, ...whereArray);
 
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
@@ -91,18 +94,12 @@ export const ADMIN = "ADMIN";
 export const MANAGER = "MANAGER";
 export const DEVELOPER = "DEVELOPER";
 export const USERS = "USERS"
-export const PEOPLE = "people";
-export const CARS = "cars";
-export const ROOMS = "rooms";
 export const COMPANY = "Company";
 export const PROJECTS = "Projects"
 export const TASK = "Tasks";
 
 
 export var endpoints = {
-  people: new ApiInterface(ADMIN),
-  cars: new ApiInterface(MANAGER),
-  rooms: new ApiInterface(DEVELOPER),
   users: new ApiInterface(USERS),
   Company: new ApiInterface(COMPANY),
   Project: new ApiInterface(PROJECTS),

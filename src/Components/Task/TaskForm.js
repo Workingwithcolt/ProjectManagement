@@ -31,7 +31,7 @@ export default function TaskForm() {
                 querryFunction={addProject}
                 propertyList={Task}
                 queryKeyValue={TASK}
-                navigateTo="/roomView"
+                navigateTo="/home"
             />
         </section>
     )

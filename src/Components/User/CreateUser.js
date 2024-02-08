@@ -21,7 +21,7 @@ export const CreateUser = () => {
                 querryFunction={addUser}
                 propertyList={userForm}
                 queryKeyValue={USERS}
-                navigateTo="/roomView"
+                navigateTo="/home"
             />
         </section>
     )

@@ -5,7 +5,7 @@ import { UserContext } from "../Contexts/CurrentUserContext";
 function RequestedCard({ item }) {
   const { currentUserAdmin } = useContext(UserContext)
   var companyId = currentUserAdmin.selectedCompany.label;
-  console.log(item);
+
   return (
     <div className="block w-full p-6 bg-gray-700 border border-gray-200 rounded-lg shadow">
       <h1 className="mb-2 text-md font-bold tracking-tight text-white">

@@ -4,12 +4,6 @@ import { LoginPage } from '../userProfile/LoginPage'
 import { Home } from './Home'
 import GenericBodyCard from './GenericBodyCard'
 import { SignOut } from '../userProfile/SignOut'
-import CarStatusView from '../Car/CarStatusView'
-import RoomForm from '../Room/RoomForm'
-import RoomStatusView from '../Room/RoomStatusView'
-import CarForm from '../Car/CarForm'
-import PeopleForm from '../People/PeopleForm'
-import PeoplStatusView from '../People/PeoplStatusView'
 import { Userjoin } from '../User/UserJoin'
 import { CreateCompany } from '../User/CreateCompany'
 import { CreateUser } from '../User/CreateUser'
@@ -34,42 +28,6 @@ function Routers() {
                 element={
                     <LoginPage />
                 } />
-
-            <Route path='/carView' element={
-                <GenericBodyCard>
-                    <CarStatusView />
-                </GenericBodyCard>
-            } />
-
-            <Route path='/roomView' element={
-                <GenericBodyCard>
-                    <RoomStatusView />
-                </GenericBodyCard>
-            } />
-
-            <Route path='/peopleView' element={
-                <GenericBodyCard>
-                    <PeoplStatusView />
-                </GenericBodyCard>
-            } />
-
-            <Route path='/roomForm' element={
-                <GenericBodyCard>
-                    <RoomForm />
-                </GenericBodyCard>
-            } />
-
-            <Route path='/carForm' element={
-                <GenericBodyCard>
-                    <CarForm />
-                </GenericBodyCard>
-            } />
-
-            <Route path='/peopleForm' element={
-                <GenericBodyCard>
-                    <PeopleForm />
-                </GenericBodyCard>
-            } />
 
             <Route path='/createUser' element={
                 <GenericBodyCard>

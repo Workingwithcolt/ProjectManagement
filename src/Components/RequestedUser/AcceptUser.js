@@ -57,13 +57,12 @@ export const AcceptUser = ({ item }) => {
     }
 
     const { data, isLoading: loader, error: err } = useQuery([uid, MANAGER], async () => {
-        const databaseQuery = [`${currentUserAdmin.selectedCompany.label}`, "==", ACCEPTED]
+        const databaseQuery = [[`${currentUserAdmin.selectedCompany.label}`, "==", ACCEPTED]]
         let users = await endpoints.users.getAllDocument(databaseQuery)
         let result = []
         users.forEach(element => {
             if (element?.Access[currentUserAdmin?.selectedCompany?.label]?.length === 1) {
                 if (element.Access[currentUserAdmin.selectedCompany.label][0].position.position == MANAGER_LEVEL_ID) {
-                    console.log(element);
                     result.push({
                         value: element.id,
                         label: element['Full Name']

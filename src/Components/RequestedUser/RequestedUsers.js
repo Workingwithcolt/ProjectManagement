@@ -21,7 +21,7 @@ function DataReceiver({ queryData }) {
   const queryFunction = async () => {
     let isAdmin = checkAdmin(queryData.selectedCompany.value)
     if (isAdmin) {
-      databaseQuery = [`${queryData.selectedCompany.label}`, "==", PENDING]
+      databaseQuery =[ [`${queryData.selectedCompany.label}`, "==", PENDING]]
     }
     return await endpoints.users.getAllDocument(databaseQuery)
   };

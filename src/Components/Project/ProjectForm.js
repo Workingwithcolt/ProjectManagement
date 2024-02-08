@@ -25,7 +25,7 @@ export default function ProjectForm() {
                 querryFunction={addProject}
                 propertyList={Projects}
                 queryKeyValue={PROJECTS}
-                navigateTo="/roomView"
+                navigateTo="/home"
             />
         </section>
     )
