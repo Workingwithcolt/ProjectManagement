@@ -1,8 +1,7 @@
-import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../Auth";
 import { MANAGER, endpoints } from "../../FirebaseHelpers/ApiInterface";
 import DataView from "../GenericComponents/DataView";
-import { ACCEPTED, ADMIN_USER_LEVEL_ID, MANAGER_LEVEL_ID, checkAdmin, checkManager } from "../../Helper/helper";
+import { ACCEPTED, MANAGER_LEVEL_ID, checkAdmin, checkManager } from "../../Helper/helper";
 import { useContext } from "react";
 import { UserContext } from "../Contexts/CurrentUserContext";
 import { ManagerCard } from "./ManagerCard";
@@ -59,7 +58,7 @@ function DataReceiver({ queryData }) {
 
 export const ManagerView = () => {
     const { currentUserAdmin } = useContext(UserContext);
-    if (!(currentUserAdmin?.name == "")) {
+    if (!(currentUserAdmin?.name === "")) {
         return (
             <DataReceiver queryData={currentUserAdmin} />
         )
