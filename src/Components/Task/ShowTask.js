@@ -23,6 +23,7 @@ export const ShowTask = () => {
           current.Task
         )
     }
+    
     return (
         <section className='h-full flex flex-col bg-gray-900 text-white py-4 px-8'>
             <div className='py-4'>
