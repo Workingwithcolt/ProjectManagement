@@ -45,7 +45,7 @@ export const checkAdmin = (currentAcces) => {
 }
 
 export const checkManager = (currentAcces) => {
-    return (currentAcces[0]?.position?.Projects?.length > 0) ? true : false
+    return (currentAcces[0]?.position?.position === MANAGER_LEVEL_ID ) ? true : false
 }
 
 export const checkDeveloper = (currentAcces, companyId) => {

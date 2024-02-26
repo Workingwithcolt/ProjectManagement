@@ -21,18 +21,20 @@ class ApiInterface {
 
   addDocument = async (newDoc, customId = undefined) => {
     if (!customId) {
-      return addDoc(this.collectionRef, newDoc);
+      return await addDoc(this.collectionRef, newDoc);
     }
-    return setDoc(doc(this.collectionRef, customId), newDoc);
+    await setDoc(doc(this.collectionRef, customId), newDoc);
+    return customId;
   };
 
   updateDocument = async (id, updatedDoc) => {
-    const document = doc(db, this.collectionRef.id, id);
-    return updateDoc(document, updatedDoc);
+    const document =  doc(db, this.collectionRef.id, id);
+     await updateDoc(document, updatedDoc);
+     return id;
   };
 
   deleteDocument = async (id) => {
-    const document = doc(db, this.collectionRef.id, id);
+    const document =  doc(db, this.collectionRef.id, id);
     return deleteDoc(document);
   };
 
@@ -64,7 +66,7 @@ class ApiInterface {
   };
 
   getDocument = async (id) => {
-    const document = doc(db, this.collectionRef.id, id);
+    const document =await  doc(db, this.collectionRef.id, id);
     try {
       const userDocSnapshot = await getDoc(document);
       if (userDocSnapshot.exists()) {
